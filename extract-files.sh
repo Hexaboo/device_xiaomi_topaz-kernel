@@ -94,5 +94,13 @@ for MODULE_FOLDER in "${MODULE_FOLDERS[@]}"; do
         -exec basename {} \;
 done
 
+if [ -f ./vendor_dlkm/qca_cld3_wlan.ko ]; then
+    echo "Compressing ./vendor_dlkm/qca_cld3_wlan.ko ..."
+    xz -T0 -3 -f ./vendor_dlkm/qca_cld3_wlan.ko
+    echo "Compression done: ./vendor_dlkm/qca_cld3_wlan.ko.xz"
+else
+    echo "Warning: ./vendor_dlkm/qca_cld3_wlan.ko not found, skipping compression."
+fi
+
 # Clear temp dir
 rm -rf "${TMP_DIR}"
